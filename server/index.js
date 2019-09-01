@@ -1,6 +1,6 @@
 const express = require('express');
+
 const volleyball = require('volleyball');
-const bodyParser = require('body-parser');
 // const cors = require('cors');
 
 const app = express();
@@ -9,8 +9,7 @@ const auth = require('./auth');
 
 app.use(volleyball);
 
-
-app.use(bodyParser);
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json({
@@ -18,7 +17,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use('/auth', auth)
+app.use('/auth', auth);
 
 function notFound(req, res, next) {
   res.status(404);
